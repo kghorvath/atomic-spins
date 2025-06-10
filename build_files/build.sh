@@ -27,6 +27,30 @@ set -ouex pipefail
 # curl --retry 3 -Lo /etc/yum.repos.d/_copr_lukenukem-asus-linux.repo \
 #     https://copr.fedorainfracloud.org/coprs/lukenukem/asus-linux/repo/fedora-$(rpm -E %fedora)/lukenukem-asus-linux-fedora-$(rpm -E %fedora).repo
 
+# Remove Existing Kernel
+for pkg in kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra; do
+    rpm --erase $pkg --nodeps
+done
+
+# Fetch Common AKMODS & Kernel RPMS
+skopeo copy --retry-times 3 docker://ghcr.io/ublue-os/akmods:bazzite-"$(rpm -E %fedora)" dir:/tmp/akmods
+AKMODS_TARGZ=$(jq -r '.layers[].digest' </tmp/akmods/manifest.json | cut -d : -f 2)
+tar -xvzf /tmp/akmods/"$AKMODS_TARGZ" -C /tmp/
+mv /tmp/rpms/* /tmp/akmods/
+# NOTE: kernel-rpms should auto-extract into correct location
+
+# Install Kernel
+dnf5 -y install \
+    /tmp/kernel-rpms/kernel-[0-9]*.rpm \
+    /tmp/kernel-rpms/kernel-core-*.rpm \
+    /tmp/kernel-rpms/kernel-modules-*.rpm
+
+# TODO: Figure out why akmods cache is pulling in akmods/kernel-devel
+dnf5 -y install \
+    /tmp/kernel-rpms/kernel-devel-*.rpm
+
+dnf5 versionlock add kernel kernel-devel kernel-devel-matched kernel-core kernel-modules kernel-modules-core kernel-modules-extra
+
 curl --retry 3 -Lo /etc/yum.repos.d/linux-surface.repo \
         https://pkg.surfacelinux.com/fedora/linux-surface.repo
 
@@ -92,3 +116,9 @@ surface_hid_core
 surface_hid
 surface_kbd
 EOF
+
+KERNEL_SUFFIX=""
+
+QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-(|'"$KERNEL_SUFFIX"'-)(\d+\.\d+\.\d+)' | sed -E 's/kernel-(|'"$KERNEL_SUFFIX"'-)//')"
+/usr/bin/dracut --no-hostonly --kver "$QUALIFIED_KERNEL" --reproducible -v --add ostree -f "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
+chmod 0600 "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
