@@ -41,8 +41,9 @@ mv /tmp/rpms/* /tmp/akmods/
 cat /etc/dnf/dnf.conf
 cat /etc/yum.repos.d/*
 
+dnf5 --setopt=disable_excludes=*
 # Install Kernel
-dnf5 --disableexcludes=all -y install \
+dnf5 -y install \
     /tmp/kernel-rpms/kernel-[0-9]*.rpm \
     /tmp/kernel-rpms/kernel-core-*.rpm \
     /tmp/kernel-rpms/kernel-modules-*.rpm
