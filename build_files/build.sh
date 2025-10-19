@@ -10,10 +10,14 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y emacs freeipa-client oddjob-mkhomedir stow
+dnf5 install -y emacs stow
+
+# FreeIPA client
+# dnf5 -y install freeipa-client oddjob-mkhomedir
 
 dnf5 -y copr enable solopasha/hyprland
 dnf5 -y install hyprland-git hyprland-plugins-git waybar-git hyprpanel
+# dnf5 -y copr disable solopasha/hyprland
 
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
