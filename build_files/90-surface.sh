@@ -2,33 +2,7 @@
 
 set -ouex pipefail
 
-### Install packages
-
-# Packages can be installed from any enabled yum repo on the image.
-# RPMfusion repos are available by default in ublue main images
-# List of rpmfusion packages can be found here:
-# https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
-
-# this installs a package from fedora repos
-dnf5 install -y emacs stow
-
-# FreeIPA client
-# dnf5 -y install freeipa-client oddjob-mkhomedir
-
-dnf5 -y copr enable solopasha/hyprland
-dnf5 -y install hyprland-git hyprland-plugins-git waybar-git hyprpanel
-# dnf5 -y copr disable solopasha/hyprland
-
-# Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
-
-#### Example for enabling a System Unit File
-
-#systemctl enable podman.socket
-
-# # Asus/Surface for HWE
-# curl --retry 3 -Lo /etc/yum.repos.d/_copr_lukenukem-asus-linux.repo \
-#     https://copr.fedorainfracloud.org/coprs/lukenukem/asus-linux/repo/fedora-$(rpm -E %fedora)/lukenukem-asus-linux-fedora-$(rpm -E %fedora).repo
+### Surface Kernel Modifications
 
 # Remove Existing Kernel
 for pkg in kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra; do
@@ -60,16 +34,6 @@ dnf5 versionlock add kernel kernel-devel kernel-devel-matched kernel-core kernel
 
 curl --retry 3 -Lo /etc/yum.repos.d/linux-surface.repo \
         https://pkg.surfacelinux.com/fedora/linux-surface.repo
-
-# # Asus Firmware -- Investigate if everything has been upstreamed
-# # git clone https://gitlab.com/asus-linux/firmware.git --depth 1 /tmp/asus-firmware
-# # cp -rf /tmp/asus-firmware/* /usr/lib/firmware/
-# # rm -rf /tmp/asus-firmware
-
-# ASUS_PACKAGES=(
-#     asusctl
-#     asusctl-rog-gui
-# )
 
 SURFACE_PACKAGES=(
     iptsd
