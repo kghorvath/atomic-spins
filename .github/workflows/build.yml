@@ -8,15 +8,15 @@ on:
     - cron: '05 10 * * *'  # 10:05am UTC everyday
   push:
     branches:
-      - main
+      - bluefin-surface
     paths-ignore:
       - '**/README.md'
   workflow_dispatch:
 
 env:
-  IMAGE_DESC: "Bluefin Image for Surface Devices"
-  IMAGE_KEYWORDS: "bootc,ublue,universal-blue,bluefin,surface"
-  IMAGE_NAME: "${{ github.event.repository.name }}"  # output image name, usually same as repo name
+  IMAGE_DESC: "Kamin's Custom Atomic Image"
+  IMAGE_KEYWORDS: "bootc,ublue,atomic"
+  IMAGE_NAME: "${{ github.ref_name }}"  # output image name, usually same as repo name
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
   DEFAULT_TAG: "latest"
 
