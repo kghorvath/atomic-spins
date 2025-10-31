@@ -7,9 +7,9 @@ on:
 
 env:
   IMAGE_BRANCH: "bluefin-surface-42"
+  IMAGE_NAME: "bluefin-surface-42"
   IMAGE_DESC: "Kamin's Custom Atomic Image"
   IMAGE_KEYWORDS: "bootc,ublue,atomic"
-  IMAGE_NAME: ${{ IMAGE_BRANCH }}
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
   DEFAULT_TAG: "latest"
 
