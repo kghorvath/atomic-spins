@@ -28,7 +28,7 @@ jobs:
     strategy:
       matrix:
         image:
-          - bluefin-surface-42
+          - bluefin-surface
         release:
           - 42
 
