@@ -1,22 +1,17 @@
 ---
-name: Build Bluefin Surface container image
+name: Build bluefin-suface F42 container image
 on:
-  pull_request:
-    branches:
-      - main
   schedule:
     - cron: '05 10 * * *'  # 10:05am UTC everyday
-  push:
-    branches:
-      - bluefin-surface
     paths-ignore:
       - '**/README.md'
   workflow_dispatch:
 
 env:
+  IMAGE_BRANCH: "bluefin-surface-42"
   IMAGE_DESC: "Kamin's Custom Atomic Image"
   IMAGE_KEYWORDS: "bootc,ublue,atomic"
-  IMAGE_NAME: "${{ github.ref_name }}"  # output image name, usually same as repo name
+  IMAGE_NAME: ${{ env.IMAGE_BRANCH }}
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
   DEFAULT_TAG: "latest"
 
@@ -44,6 +39,8 @@ jobs:
       # These stage versions are pinned by https://github.com/renovatebot/renovate
       - name: Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v4
+        with:
+          ref: ${{ env.IMAGE_BRANCH }}
 
       # This is optional, but if you see that your builds are way too big for the runners, you can enable this by uncommenting the following lines:
       # - name: Maximize build space
