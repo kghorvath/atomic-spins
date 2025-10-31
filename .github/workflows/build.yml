@@ -1,12 +1,12 @@
 ---
-name: Build bluefin-suface F42 container image
+name: Build container image
 on:
   schedule:
     - cron: '05 10 * * *'  # 10:05am UTC everyday
   workflow_dispatch:
 
 env:
-  IMAGE_DESC: "Kamin's Custom Atomic Image"
+  IMAGE_DESC: "Kamin's Atomic Image"
   IMAGE_KEYWORDS: "bootc,ublue,atomic"
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
   DEFAULT_TAG: "latest"
