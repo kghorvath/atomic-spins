@@ -6,8 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_BRANCH: "bluefin-surface-42"
-  IMAGE_NAME: "bluefin-surface-42"
+  IMAGE_NAME: "${{ matrix.image }}"
   IMAGE_DESC: "Kamin's Custom Atomic Image"
   IMAGE_KEYWORDS: "bootc,ublue,atomic"
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
@@ -27,6 +26,11 @@ jobs:
       packages: write
       id-token: write
 
+    strategy:
+      matrix:
+        image:
+          - bluefin-surface-42
+
     steps:
       - name: Prepare environment
         run: |
@@ -38,7 +42,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v4
         with:
-          ref: ${{ env.IMAGE_BRANCH }}
+          ref: ${{ env.IMAGE_NAME }}
 
       # This is optional, but if you see that your builds are way too big for the runners, you can enable this by uncommenting the following lines:
       # - name: Maximize build space
