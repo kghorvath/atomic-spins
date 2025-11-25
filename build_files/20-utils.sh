@@ -12,3 +12,6 @@ dnf5 -y install adcli oddjob-mkhomedir samba-common-tools samba-winbind sssd-ad 
 
 # Utilities
 dnf5 -y install stow htop
+
+# Cockpit
+dnf5 -y install cockpit cockpit-podman cockpit-ostree
