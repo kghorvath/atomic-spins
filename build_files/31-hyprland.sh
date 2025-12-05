@@ -27,7 +27,6 @@ dnf5 -y install \
 	gdm \
 	grim \
 	hyprpanel \
-	hyprwall \
 	network-manager-applet \
 	pavucontrol \
 	slurp \

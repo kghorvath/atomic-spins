@@ -31,7 +31,7 @@ jobs:
           - base: ublue-os/bluefin-dx
             image: bluefin-surface
             release: 43
-          - base: ublue-os/main-base
+          - base: ublue-os/base-main
             image: hyprland-surface
             release: 43
           - base: ublue-os/ucore-minimal
