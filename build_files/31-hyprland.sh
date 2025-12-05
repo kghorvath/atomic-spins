@@ -24,6 +24,7 @@ dnf5 -y install \
 	bluez \
 	bluez-tools \
 	brightnessctl \
+	gdm \
 	grim \
 	hyprpanel \
 	hyprwall \
