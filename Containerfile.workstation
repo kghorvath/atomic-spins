@@ -6,7 +6,7 @@ FROM scratch AS ctx
 COPY build_files /
 
 # Base Image
-FROM ghcr.io/ublue-os/base-main:43
+FROM ghcr.io/${BASE_IMAGE}:${RELEASE}
 
 RUN --mount=type=cache,dst=/var/cache/libdnf5 \
     --mount=type=cache,dst=/var/cache/rpm-ostree \
@@ -24,18 +24,6 @@ RUN --mount=type=cache,dst=/var/cache/libdnf5 \
     --mount=type=cache,dst=/var/cache/rpm-ostree \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     /ctx/30-graphical.sh && \
-    /ctx/helper/cleanup.sh
-
-RUN --mount=type=cache,dst=/var/cache/libdnf5 \
-    --mount=type=cache,dst=/var/cache/rpm-ostree \
-    --mount=type=bind,from=ctx,source=/,target=/ctx \
-    /ctx/31-hyprland.sh && \
-    /ctx/helper/cleanup.sh
-
-RUN --mount=type=cache,dst=/var/cache/libdnf5 \
-    --mount=type=cache,dst=/var/cache/rpm-ostree \
-    --mount=type=bind,from=ctx,source=/,target=/ctx \
-    /ctx/90-surface.sh && \
     /ctx/helper/cleanup.sh
 
 ### LINTING

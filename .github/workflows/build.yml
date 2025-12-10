@@ -29,10 +29,13 @@ jobs:
       matrix:
         include:
           - base: ublue-os/bluefin-dx
+            image: workstation
+            release: 43
+          - base: ublue-os/bluefin-dx
             image: bluefin-surface
             release: 43
           - base: ublue-os/base-main
-            image: hyprland-surface
+            image: hyprland
             release: 43
           - base: ublue-os/ucore-minimal
             image: minimal
