@@ -37,6 +37,9 @@ jobs:
           - base: ublue-os/bluefin-dx
             image: surface
             release: 43
+          - base: ublue-os/aurora-dx
+            image: kde
+            release: 43
           - base: ublue-os/base-main
             image: hyprland
             release: 43
