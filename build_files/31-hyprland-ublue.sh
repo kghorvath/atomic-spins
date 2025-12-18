@@ -8,7 +8,8 @@ dnf5 -y copr enable heus-sueh/packages
 
 # Install main Hyprland packages
 dnf5 -y install \
-	hyprland \
+        hyprland \
+        hyprland-qtutils \
 	hyprcursor \
 	hyprpaper \
 	hyprpicker \

@@ -11,7 +11,7 @@ dnf5 -y install emacs neovim
 dnf5 -y install adcli oddjob-mkhomedir samba-common-tools samba-winbind sssd-ad sssd-ipa sssd-ldap libsss_autofs libsss_sudo sssd-nfs-idmap
 
 # Utilities
-dnf5 -y install stow htop
+dnf5 -y install nmtui stow htop
 
 # Cockpit
 dnf5 -y install cockpit cockpit-podman cockpit-ostree

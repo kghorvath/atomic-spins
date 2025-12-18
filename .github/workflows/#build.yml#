@@ -1,7 +1,7 @@
 ---
 name: Build container image
 on:
-  push:
+:  push:
     branches:
       - main
   schedule:
@@ -40,7 +40,7 @@ jobs:
           - base: ublue-os/aurora-dx
             image: kde
             release: 43
-          - base: wayblueorg/hyprland 
+          - base: ublue-os/base-main
             image: hyprland
             release: 43
           - base: ublue-os/ucore-minimal
