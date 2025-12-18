@@ -11,7 +11,11 @@ dnf5 -y install emacs neovim
 dnf5 -y install adcli oddjob-mkhomedir samba-common-tools samba-winbind sssd-ad sssd-ipa sssd-ldap libsss_autofs libsss_sudo sssd-nfs-idmap
 
 # Utilities
-dnf5 -y install nmtui stow htop
+dnf5 -y install fastfetch htop nmtui rclone stow tmux
 
 # Cockpit
 dnf5 -y install cockpit cockpit-podman cockpit-ostree
+
+# Tailscale
+dnf5 config-manager --add-repo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+dnf5 -y install --enablerepo='tailscale-stable' tailscale
