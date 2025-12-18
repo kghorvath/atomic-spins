@@ -17,5 +17,5 @@ dnf5 -y install fastfetch htop nmtui rclone stow tmux
 dnf5 -y install cockpit cockpit-podman cockpit-ostree
 
 # Tailscale
-dnf5 config-manager add-repo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+dnf5 config-manager --add-repo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
 dnf5 -y install --enablerepo='tailscale-stable' tailscale
