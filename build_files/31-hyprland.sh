@@ -29,6 +29,7 @@ dnf5 -y install \
 	hyprpanel \
 	network-manager-applet \
 	pavucontrol \
+	sddm \
 	slurp \
 	swaync \
 	swww \
