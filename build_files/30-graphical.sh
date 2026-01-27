@@ -8,3 +8,5 @@ set -ouex pipefail
 dnf5 -y copr enable scottames/ghostty
 dnf5 -y install ghostty
 dnf5 -y copr disable scottames/ghostty
+
+dnf5 -y install waydroid
