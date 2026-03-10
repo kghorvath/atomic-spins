@@ -6,7 +6,7 @@ set -ouex pipefail
 
 # Remove Existing Kernel
 for pkg in kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra \
-        kmod-openrazer kmod-framework-laptop kmod-v4l2loopback v4l2loopback; do
+        kmod-framework-laptop kmod-v4l2loopback v4l2loopback; do
     rpm --erase $pkg --nodeps
 done
 
