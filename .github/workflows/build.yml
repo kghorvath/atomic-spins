@@ -49,9 +49,12 @@ jobs:
           - base: ublue-os/ucore-hci
             image: server
             release: stable
+#          - base: ublue-os/ucore-hci
+#            image: server
+#            release: stable-nvidia
           - base: ublue-os/ucore-hci
             image: server
-            release: stable-nvidia
+            release: stable-nvidia-lts
 
     steps:
       - name: Prepare environment
