@@ -40,6 +40,9 @@ jobs:
           - base: ublue-os/aurora-dx
             image: kde
             release: 43
+          - base: ublue-os/aurora-dx
+            image: kde
+            release: 44
           - base: wayblueorg/hyprland 
             image: hyprland
             release: 43
